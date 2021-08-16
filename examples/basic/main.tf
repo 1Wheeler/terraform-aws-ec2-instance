@@ -1,3 +1,17 @@
+#################################
+##			Variables		   ##
+#################################
+variable "access_key" {}
+variable "secret_key" {}
+variable "region" {
+  default = "us-west-1"
+}
+
+
+#################################
+##			Provider		   ##
+#################################
+
 provider "aws" {
   region = "${var.region}"
   access_key = "${var.access_key}"
