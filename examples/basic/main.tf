@@ -195,7 +195,7 @@ module "ec2_with_network_interface" {
   network_interface = [
     {
       device_index          = 0
-      network_interface_id  = aws_network_interface.this[0].id
+      network_interface_id  = aws_network_interface.jwAwsNic[0].id
       delete_on_termination = false
     }
   ]
