@@ -111,7 +111,7 @@ module "ec2" {
 
   user_data = <<EOF
       #!/bin/bash
-      "${var.agent_install}"
+      "<%=cloudConfig.agentInstall%>"
     EOF
 
   enable_volume_tags = false
