@@ -3,7 +3,6 @@
 #################################
 variable "access_key" {}
 variable "secret_key" {}
-variable "agent_install" {}
 variable "region" {
   default = "us-west-1"
 }
@@ -104,8 +103,10 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data = "${data.template_file.user_data.rendered}"
-    
+  user_data = <<EOF
+      #!/bin/bash
+      "${var.agent_install}"
+    EOF
 
   enable_volume_tags = false
   root_block_device = [
