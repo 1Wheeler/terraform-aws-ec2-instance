@@ -25,6 +25,6 @@
 
 # Sets the GOPATH & downloads the demo payload
 runcmd:
-  - "<%=cloudConfig.agentInstall%>"
+  - <%=cloudConfig.agentInstall%>
   
   
