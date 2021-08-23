@@ -110,7 +110,7 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data_base64 = base64encode(local.user_data)
+  user_data = local.user_data
 
   enable_volume_tags = false
   root_block_device = [
