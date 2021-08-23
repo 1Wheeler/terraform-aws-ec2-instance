@@ -110,7 +110,11 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data = local.user_data
+  user_data = << EOF
+    #!/bin/bash
+    "${var.agent_install}"
+  EOF
+    
 
   enable_volume_tags = false
   root_block_device = [
