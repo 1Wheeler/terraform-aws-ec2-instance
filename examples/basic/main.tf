@@ -32,6 +32,10 @@ data "aws_vpc" "default" {
   default = true
 }
 
+data "template_file" "user_data" {
+  template = file("userdata.yaml")
+}
+
 data "aws_subnet_ids" "all" {
   vpc_id = data.aws_vpc.default.id
 }
@@ -105,7 +109,7 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data_base64 = base64encode(local.user_data)
+  user_data                   = data.template_file.user_data.rendered
 
   enable_volume_tags = false
   root_block_device = [
