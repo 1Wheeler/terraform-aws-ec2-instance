@@ -3,6 +3,7 @@
 #################################
 variable "access_key" {}
 variable "secret_key" {}
+variable "agent_install" {}
 variable "region" {
   default = "us-west-1"
 }
@@ -21,7 +22,7 @@ provider "aws" {
 locals {
   user_data = <<EOF
 #!/bin/bash
-<%=cloudConfig.agentInstall%>
+"${var.agent_install}"
 EOF
 }
 
