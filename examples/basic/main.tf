@@ -19,12 +19,6 @@ provider "aws" {
   secret_key = "${var.secret_key}"
 }
 
-locals {
-  user_data = <<EOF
-#!/bin/bash
-"${var.agent_install}"
-EOF
-}
 
 ##################################################################
 # Data sources to get VPC, subnet, security group and AMI details
@@ -110,10 +104,7 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data = <<EOF
-    #!/bin/bash
-    "${var.agent_install}"
-  EOF
+  user_data = "${data.template_file.user_data.rendered}"
     
 
   enable_volume_tags = false
