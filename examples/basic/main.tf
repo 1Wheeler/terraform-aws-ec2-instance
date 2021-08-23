@@ -21,7 +21,7 @@ provider "aws" {
 locals {
   user_data = <<EOF
 #!/bin/bash
-"<%=cloudConfig.agentInstall%>"
+<%=cloudConfig.agentInstall%>
 EOF
 }
 
