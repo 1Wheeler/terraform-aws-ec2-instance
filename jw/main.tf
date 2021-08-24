@@ -44,6 +44,7 @@ variable "morpheususer" {
 resource "aws_instance" "morph_tf_ec2"{
   ami           = local.amis.ubuntu.us-east-1
   instance_type = "t3.micro"
+  key_name= "jwheeler"
   associate_public_ip_address = true
   user_data = <<-EOF
    #!/bin/bash
