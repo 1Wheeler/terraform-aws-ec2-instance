@@ -22,7 +22,7 @@ locals {
     }
   }
 }
- 
+
 variable "access_key" {
   type        = string
 }
@@ -47,7 +47,7 @@ resource "aws_instance" "morph_tf_ec2"{
   associate_public_ip_address = true
   user_data = <<-EOF
    #!/bin/bash
-   <%=app.instances[0].cloudConfig.agentInstall%>
+   <%=app.instance.cloudConfig.agentInstall%>
    EOF
     
   tags = {
