@@ -60,7 +60,7 @@ resource "aws_instance" "morph_tf_ec2"{
   associate_public_ip_address = true
   user_data = <<-EOF
    #!/bin/bash
-   var.newagentinstall
+   ${var.newagentinstall}
    EOF
     
   tags = {
