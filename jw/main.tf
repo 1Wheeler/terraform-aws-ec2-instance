@@ -48,7 +48,7 @@ resource "aws_instance" "morph_tf_ec2"{
   associate_public_ip_address = true
   user_data = <<-EOF
    #!/bin/bash
-   <%=instance.cloudConfig.agentInstall%>
+   <%=app.cloudConfig.agentInstall%>
    EOF
     
   tags = {
