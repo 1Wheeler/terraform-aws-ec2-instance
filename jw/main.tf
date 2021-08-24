@@ -58,6 +58,5 @@ resource "aws_instance" "morph_tf_ec2"{
   tags = {
       Name = "morph_tf_ec2"
       morph_user = var.morpheususer
-      api_key = local.cloud-settings.api_key
   }
 }
