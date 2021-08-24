@@ -21,10 +21,6 @@ locals {
         us-east-2 = "ami-0443305dabd4be2bc"
     }
   }
-  cloud-settings = {
-    hostname = "<%=instance.name%>"
-    api_key = "<%=instance.container.apiKey%>"
-  }
 }
  
 variable "access_key" {
@@ -45,10 +41,6 @@ variable "newagentinstall" {
   default = "<%=cloudConfig.agentInstall%>"
 }
 
-variable "linuxUsername" {
-  type = string
-  default = "<%=username%>"
-}
 variable "morpheususer" {
   type = string
   default = "<%=morpheus.morpheusUser%>"
@@ -65,7 +57,6 @@ resource "aws_instance" "morph_tf_ec2"{
     
   tags = {
       Name = "morph_tf_ec2"
-      linux_user = var.linuxUsername
       morph_user = var.morpheususer
       api_key = local.cloud-settings.api_key
   }
