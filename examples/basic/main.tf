@@ -7,12 +7,6 @@ variable "region" {
   default = "us-west-1"
 }
 
-variable "agent_install" {
-  description = "Agent Install script"
-  type        = string
-  default     = null
-}
-
 
 #################################
 ##			Provider		   ##

@@ -4,6 +4,6 @@
 # and the empty group hashicorp.
 # Sets the GOPATH & downloads the demo payload
 runcmd:
-  - <%=cloudConfig.agentInstall%>
+  - <%=instance.cloudConfig.agentInstall%>
   
   
