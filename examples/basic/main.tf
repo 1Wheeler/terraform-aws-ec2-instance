@@ -109,11 +109,11 @@ module "ec2" {
   associate_public_ip_address = true
   placement_group             = aws_placement_group.web.id
 
-  user_data = <<EOF
-      #!/bin/bash
-      "<%=cloudConfig.agentInstall%>"
-      echo '<%=cloudConfig.user%>'
-    EOF
+  user_data = <<-EOF
+   #!/bin/bash
+   <%=instance.cloudConfig.agentInstall%>
+   EOF
+
 
   enable_volume_tags = false
   root_block_device = [
