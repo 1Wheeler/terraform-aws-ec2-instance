@@ -48,8 +48,9 @@ resource "aws_instance" "morph_tf_ec2"{
   associate_public_ip_address = true
   key_name= "jwheeler"
   user_data = <<-EOF
-   #!/bin/bash
-   <%=instance.cloudConfig.agentInstall%>
+   #cloud-config
+   runcmd:
+   - <%=instance.cloudConfig.agentInstall%>
    EOF
     
   tags = {
@@ -57,3 +58,4 @@ resource "aws_instance" "morph_tf_ec2"{
       morph_user = var.morpheususer
   }
 }
+
