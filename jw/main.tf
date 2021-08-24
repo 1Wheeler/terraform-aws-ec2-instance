@@ -36,11 +36,6 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "newagentinstall" {
-  type = string
-  default = "<%=cloudConfig.agentInstall%>"
-}
-
 variable "morpheususer" {
   type = string
   default = "<%=morpheus.morpheusUser%>"
@@ -52,7 +47,7 @@ resource "aws_instance" "morph_tf_ec2"{
   associate_public_ip_address = true
   user_data = <<-EOF
    #!/bin/bash
-   ${var.newagentinstall}
+   <%=instance.cloudConfig.agentInstall%>
    EOF
     
   tags = {
