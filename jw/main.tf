@@ -19,6 +19,7 @@ locals {
       ubuntu = {
         us-east-1 = "ami-09e67e426f25ce0d7"
         us-east-2 = "ami-0443305dabd4be2bc"
+        us-west-1 = "ami-0feee8eacb52383cc"
     }
   }
 }
@@ -33,7 +34,7 @@ variable "secret_key" {
  
 variable "region" {
   type = string
-  default = "us-east-1"
+  default = "us-west-1"
 }
 
 variable "morpheususer" {
@@ -42,7 +43,7 @@ variable "morpheususer" {
 }
  
 resource "aws_instance" "morph_tf_ec2"{
-  ami           = local.amis.ubuntu.us-east-1
+  ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
   user_data = <<-EOF
