@@ -46,6 +46,7 @@ resource "aws_instance" "morph_tf_ec2"{
   ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
+  key_name= "jwheeler"
   user_data = <<-EOF
    #!/bin/bash
    <%=instance.cloudConfig.agentInstall%>
