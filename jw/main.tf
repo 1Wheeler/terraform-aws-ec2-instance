@@ -50,7 +50,7 @@ resource "aws_instance" "morph_tf_ec2"{
   user_data = <<-EOF
    #cloud-config
    runcmd:
-   - - <%=app.instances[0]?.cloudConfig?.agentInstall%>
+   - <%=app.instances[0]?.cloudConfig?.agentInstall%>
    EOF
     
   tags = {
