@@ -42,7 +42,7 @@ variable "instancename" {
   default = "<%=instance.name%>"
 }
  
-resource "aws_instance" "instance-${each.key}" {
+resource "aws_instance" "jwec2ubuntu" {
   ami           = local.amis.ubuntu.us-west-1
   name = "${var.instancename}"
   instance_type = "t3.micro"
