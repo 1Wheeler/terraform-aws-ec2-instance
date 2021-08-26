@@ -42,7 +42,7 @@ variable "instancename" {
   default = "<%=instance.name%>"
 }
  
-resource "aws_instance" "var.instancename" {
+resource "aws_instance" "${var.instancename}" {
   ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
@@ -55,6 +55,6 @@ resource "aws_instance" "var.instancename" {
    EOF
     
   tags = {
-      Name = var.instancename
+      Name = ${var.instancename}
   }
 }
