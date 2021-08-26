@@ -36,25 +36,20 @@ variable "region" {
   type = string
   default = "us-west-1"
 }
-
-variable "morpheususer" {
-  type = string
-  default = "<%=morpheus.morpheusUser%>"
-}
  
-resource "aws_instance" "morph_tf_ec2"{
+resource "aws_instance" "<%=instance.name%>"{
   ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
   key_name= "jwheeler"
+  subnet_id = "<%customOptions.networksapiexternal%>"
   user_data = <<-EOF
    #cloud-config
    runcmd:
-   - <%=app.instances[0]?.cloudConfig?.agentInstall%>
+   - <%=instance.cloudConfig.agentInstall%>
    EOF
     
   tags = {
-      Name = "morph_tf_ec2"
-      morph_user = var.morpheususer
+      Name = "<%=instance.name%>"
   }
 }
