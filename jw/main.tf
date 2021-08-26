@@ -36,8 +36,13 @@ variable "region" {
   type = string
   default = "us-west-1"
 }
+
+variable "instanceName" {
+  type = string
+  default = "<%=instance.name%>"
+}
  
-resource "aws_instance" "<%=instance.name%>"{
+resource "aws_instance" var.instanceName {
   ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
@@ -50,6 +55,6 @@ resource "aws_instance" "<%=instance.name%>"{
    EOF
     
   tags = {
-      Name = "<%=instance.name%>"
+      Name = var.instanceName
   }
 }
