@@ -42,8 +42,9 @@ variable "instancename" {
   default = "<%=instance.name%>"
 }
  
-resource "aws_instance" "${var.instancename}" {
+resource "aws_instance" "instance-${each.key}" {
   ami           = local.amis.ubuntu.us-west-1
+  name = "${var.instancename}"
   instance_type = "t3.micro"
   associate_public_ip_address = true
   key_name= "jwheeler"
