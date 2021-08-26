@@ -44,7 +44,7 @@ variable "instancename" {
  
 resource "aws_instance" "jwec2ubuntu" {
   ami           = local.amis.ubuntu.us-west-1
-  name = "${var.instancename}"
+  name = var.instancename
   instance_type = "t3.micro"
   associate_public_ip_address = true
   key_name= "jwheeler"
@@ -56,6 +56,6 @@ resource "aws_instance" "jwec2ubuntu" {
    EOF
     
   tags = {
-      Name = ${var.instancename}
+      Name = var.instancename
   }
 }
