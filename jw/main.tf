@@ -42,7 +42,7 @@ variable "instanceName" {
   default = "<%=instance.name%>"
 }
  
-resource "aws_instance" var.instanceName {
+resource "aws_instance" "var.instanceName" {
   ami           = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
   associate_public_ip_address = true
