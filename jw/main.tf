@@ -37,21 +37,10 @@ variable "region" {
   default = "us-west-1"
 }
 
-variable "vpc_id" {}
-
-data "aws_vpc" "selected" {
-  id = var.vpc_id
-}
-
-# variable "instancename" {
-#  type = string
-#  default = "<%=instance.name%>"
-# }
- 
 resource "aws_instance" "jwec2ubuntu" {
   ami = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
-  vpc_id = data.aws_vpc.selected.id
+  vpc_id = "<%customOptions.poolId.name%>"
   subnet_id = "<%customOptions.networksApiExternal%>"
   vpc_security_group_ids = "[<%customOptions.securityGroupsApiExternal%>]"
   associate_public_ip_address = true
