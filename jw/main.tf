@@ -37,24 +37,26 @@ variable "region" {
   default = "us-west-1"
 }
 
-variable "instancename" {
-  type = string
-  default = "<%=instance.name%>"
-}
+# variable "instancename" {
+#  type = string
+#  default = "<%=instance.name%>"
+# }
  
 resource "aws_instance" "jwec2ubuntu" {
-  ami           = local.amis.ubuntu.us-west-1
-  instance_type = "t3.micro"
+  ami = local.amis.ubuntu.us-west-1
+  instance_type = "<%customOptions.plansApiExternal%>"
+  vpc_id = "<%customOptions.poolId%>"
+  subnet_id = "<%customOptions.networksApiExternal%>"
+  vpc_security_group_ids = "<%customOptions.securityGroupsApiExternal%>"
   associate_public_ip_address = true
-  key_name= "jwheeler"
-  subnet_id = "<%customOptions.networksapiexternal%>"
-  user_data = <<-EOF
-   #cloud-config
-   runcmd:
-   - <%=instance.cloudConfig.agentInstall%>
+  key_name = "jwheeler"
+    user_data = <<-EOF
+    #cloud-config
+    runcmd:
+    - <%=instance.cloudConfig.agentInstall%>
    EOF
     
   tags = {
-      Name = var.instancename
+      Name = "<%=instance.name%>"
   }
 }
