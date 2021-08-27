@@ -40,8 +40,8 @@ variable "region" {
 resource "aws_instance" "jwec2ubuntu" {
   ami = local.amis.ubuntu.us-west-1
   instance_type = "t3.micro"
-  subnet_id = "<%customOptions.networksApiExternal%>"
-  vpc_security_group_ids = ["<%customOptions.securityGroupsApiExternal%>"]
+  subnet_id = "<%=customOptions.networksApiExternal%>"
+  vpc_security_group_ids = ["<%=customOptions.securityGroupsApiExternal%>"]
   associate_public_ip_address = true
   key_name = "jwheeler"
     user_data = <<-EOF
