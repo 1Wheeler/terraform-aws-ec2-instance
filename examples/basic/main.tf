@@ -69,7 +69,7 @@ module "security_group" {
   egress_rules        = ["all-all"]
 }
 
-resource "aws_eip" "jwAwsEip" {
+resource "aws_eip" "this" {
   vpc      = true
   instance = module.ec2.id[0]
 }
@@ -82,9 +82,8 @@ resource "aws_placement_group" "web" {
 resource "aws_kms_key" "this" {
 }
 
-resource "aws_network_interface" "jwAwsNic" {
+resource "aws_network_interface" "this" {
   count = 1
-
   subnet_id = tolist(data.aws_subnet_ids.all.ids)[count.index]
 }
 
@@ -93,7 +92,7 @@ module "ec2" {
 
   instance_count = 1
 
-  name          = "example-normal"
+  name          = "example-normal<%sequence%>"
   ami           = data.aws_ami.amazon_linux.id
   key_name= "jwheeler"
   instance_type = "c5.large"
@@ -191,7 +190,7 @@ module "ec2_with_network_interface" {
   network_interface = [
     {
       device_index          = 0
-      network_interface_id  = aws_network_interface.jwAwsNic[0].id
+      network_interface_id  = aws_network_interface.this[0].id
       delete_on_termination = false
     }
   ]
