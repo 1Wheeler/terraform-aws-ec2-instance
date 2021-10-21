@@ -92,7 +92,7 @@ module "ec2" {
 
   instance_count = 1
 
-  name          = "example-normal<%sequence%>"
+  name          = "example-normal<%=sequence%>"
   ami           = data.aws_ami.amazon_linux.id
   key_name= "jwheeler"
   instance_type = "c5.large"
